@@ -7,6 +7,8 @@ import CosmicBadge from '../components/CosmicBadge';
 import NewsFeed from '../components/NewsFeed';
 import QuickAccessMenu from '../components/QuickAccessMenu';
 import GameCard from './GameGuard';
+import { db } from '../firebase'; 
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 const Dashboard = () => {
   const [userProgress, setUserProgress] = useState({
@@ -51,15 +53,15 @@ const Dashboard = () => {
   useEffect(() => {
     // Simulate loading data
     const fetchData = async () => {
-      const mockLeaderboard = [
-        { id: 1, name: 'CosmoKid', points: 1250, avatar: '👨‍🚀' },
-        { id: 2, name: 'StellarSarah', points: 1100, avatar: '👩‍🚀' },
-        { id: 3, name: 'GalacticGuru', points: 980, avatar: '🧙‍♂️' },
-        { id: 4, name: 'AstroAmina', points: 875, avatar: '👩‍🔬' },
-        { id: 5, name: 'OrbitOmar', points: 820, avatar: '👨‍🔬' }
-      ];
-      setLeaderboard(mockLeaderboard);
-    };
+    try {
+      const q = query(collection(db, 'leaderboard'), orderBy('points'));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setLeaderboard(data);
+    } catch (error) {
+      console.error('Error fetching leaderboard:', error);
+    }
+  };
 
     fetchData();
   }, []);
