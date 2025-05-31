@@ -30,7 +30,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/learn" element={<LearningModules />} />
             <Route path="/rocket-lab" element={<RocketScienceLab />} />
-            <Route path="/solar-system" element={<SolarSystemExplorer />} />
+            <Route path="/learn/solar-system" element={<SolarSystemExplorer />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/learn/rockets" element={<RocketsModule />} />
             <Route path="/games/fast-typing-game" element={<FastTypingGame />} />
