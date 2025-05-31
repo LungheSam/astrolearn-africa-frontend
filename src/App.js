@@ -11,6 +11,8 @@ import AdminPanel from './components/admin/AdminPanel';
 import PageNotFound from './pages/PageNotFound';
 import AuthWrapper from './components/AuthWrapper';
 import AdminAuthWrapper from './components/admin/AdminAuthWrapper';
+import RocketsModule from './components/RocketsModule';
+import FastTypingGame from './components/FastTypeGame';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
             <Route path="/rocket-lab" element={<RocketScienceLab />} />
             <Route path="/solar-system" element={<SolarSystemExplorer />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/learn/rockets" element={<RocketsModule />} />
+            <Route path="/games/fast-typing-game" element={<FastTypingGame />} />
           </Route>
           
           {/* Admin Routes */}

@@ -11,8 +11,11 @@ body {
   color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
-}
 
+}
+.app-container{
+  background: linear-gradient(to bottom, #0A0A1A 0%, #1A1A3A 100%) !important;
+}
 a {
   color: #0ff;
   text-decoration: none;
