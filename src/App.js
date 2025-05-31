@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
+import VerifyOTP from './pages/VerifyOTP';
+import Dashboard from './components/Dashboard';
+import LearningModules from './components/LearningModules';
+import RocketScienceLab from './components/RocketScienceLab';
+import SolarSystemExplorer from './components/SolarSystemExplorer';
+import Profile from './components/Profile';
+import AdminPanel from './components/admin/AdminPanel';
+import PageNotFound from './pages/PageNotFound';
+import AuthWrapper from './components/AuthWrapper';
+import AdminAuthWrapper from './components/admin/AdminAuthWrapper';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app-container">
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/login" element={<Login />} />
+          
+          {/* OTP Verification */}
+          <Route path="/verify-otp" element={<VerifyOTP />} />
+          
+          {/* Authenticated User Routes */}
+          <Route element={<AuthWrapper />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/learn" element={<LearningModules />} />
+            <Route path="/rocket-lab" element={<RocketScienceLab />} />
+            <Route path="/solar-system" element={<SolarSystemExplorer />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+          
+          {/* Admin Routes */}
+          <Route element={<AdminAuthWrapper />}>
+            <Route path="/admin" element={<AdminPanel />} />
+          </Route>
+          
+          {/* Redirects */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          
+          {/* 404 Handling */}
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
