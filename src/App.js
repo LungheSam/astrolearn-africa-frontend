@@ -34,6 +34,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/learn/rockets" element={<RocketsModule />} />
             <Route path="/games/fast-typing-game" element={<FastTypingGame />} />
+            <Route path="/learn/profile" element={<Profile />} />
           </Route>
           
           {/* Admin Routes */}
